@@ -27,7 +27,7 @@ FastestDet|27.8%|512X512|21.51ms|34.62ms|*|0.25M
 ## Test
 * Picture test
   ```
-  python3 test.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.248723_280-epoch.pth --img data/3.jpg
+  python3 test.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth --img data/3.jpg
   ```
 <div align=center>
 <img src="https://github.com/dog-qiuqiu/FastestDet/blob/main/result.png"> />
@@ -135,7 +135,7 @@ TRAIN:
 ### Evaluation
 * Calculate map evaluation
   ```
-  python3 eval.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.248723_280-epoch.pth
+  python3 eval.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth
   ```
 * COCO2017 evaluation
   ```
