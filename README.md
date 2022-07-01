@@ -29,7 +29,7 @@ FastestDet|27.8%|512X512|21.51ms|34.62ms|*|0.25M
   python3 test.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.248723_280-epoch.pth --img data/3.jpg
   ```
 <div align=center>
-<img src="https://github.com/dog-qiuqiu/Yolo-FastestV2/blob/main/img/000139_result.png"> />
+<img src="https://github.com/dog-qiuqiu/FastestDet/blob/main/result.png"> />
 </div>
 
 ## How to train
