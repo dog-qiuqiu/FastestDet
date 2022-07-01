@@ -136,6 +136,31 @@ TRAIN:
   ```
   python3 eval.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.248723_280-epoch.pth
   ```
+* COCO2017 evaluation
+  ```
+  creating index...
+  index created!
+  creating index...
+  index created!
+  Running per image evaluation...
+  Evaluate annotation type *bbox*
+  DONE (t=30.85s).
+  Accumulating evaluation results...
+  DONE (t=4.97s).
+   Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.140
+   Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.278
+   Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.128
+   Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.018
+   Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.103
+   Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.232
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.157
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.225
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.231
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.032
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.201
+   Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.359
+
+  ```
 # Deploy
 ## NCNN
 * Waiting for update
