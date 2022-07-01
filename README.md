@@ -1,4 +1,5 @@
 # :zap:FastestDet:zap:
+![image](https://github.com/dog-qiuqiu/FastestDet/blob/main/data/data.png)
 * ***Faster! Stronger! Simpler!***
 * ***It has better single core reasoning performance and simpler feature map post-processing than Yolo-fastest***
 * ***In the ARM CPU of RK3568, the single core reasoning performance is 50% higher than Yolo-fastest***
