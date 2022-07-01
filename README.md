@@ -19,9 +19,9 @@ FastestDet|27.8%|512X512|21.51ms|34.62ms|*|0.25M
 * Dynamic positive and negative sample allocation
 # How to use
 ## Dependent installation
-  * PIP
+* PiP
   ```
-  pip3 install -r requirements.txt
+  pip install -r require.txt
   ```
 ## Test
 * Picture test
