@@ -1,4 +1,4 @@
-# :zap:FastestDet:zap:
+# :zap:FastestDet:zap:[![DOI](https://zenodo.org/badge/508635170.svg)](https://zenodo.org/badge/latestdoi/508635170)
 ![image](https://github.com/dog-qiuqiu/FastestDet/blob/main/data/data.png)
 * ***Faster! Stronger! Simpler!***
 * ***It has better single core reasoning performance and simpler feature map post-processing than Yolo-fastest***
