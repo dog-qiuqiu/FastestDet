@@ -20,9 +20,9 @@ FastestDet|27.8%|512X512|21.51ms|34.62ms|*|0.25M
 * Dynamic positive and negative sample allocation
 # How to use
 ## Dependent installation
-* PiP
+* PiP(Note pytorch CUDA version selection)
   ```
-  pip install -r require.txt
+  pip install -r requirements.txt
   ```
 ## Test
 * Picture test
