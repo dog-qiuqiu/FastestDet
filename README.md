@@ -167,8 +167,18 @@ TRAIN:
 
   ```
 # Deploy
-## NCNN
-* Waiting for update
+## Export onnx
+* You can export .onnx by adding the --onnx option when executing test.py
+  ```
+  python3 test.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth --img data/3.jpg --onnx
+  ```
+## onnx-runtime
+* You can learn about the pre and post-processing methods of FastestDet in this Sample
+  ```
+  cd example/onnx-runtime
+  pip install onnx-runtime
+  python3 runtime.py
+  ```
 # Citation
 * If you find this project useful in your research, please consider cite:
 ```
