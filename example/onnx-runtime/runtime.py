@@ -1,4 +1,5 @@
 import cv2
+import time
 import numpy as np
 import onnxruntime 
 
@@ -119,14 +120,19 @@ if __name__ == '__main__':
     # 加载模型
     session = onnxruntime.InferenceSession('FastestDet.onnx')
     # 目标检测
+    start = time.perf_counter()
     bboxes = detection(session, img, input_width, input_height, 0.8)
+    end = time.perf_counter()
+    time = (end - start) * 1000.
+    print("forward time:%fms"%time)
 
     # 加载label names
     names = []
     with open("coco.names", 'r') as f:
 	    for line in f.readlines():
 	        names.append(line.strip())
-
+            
+    print("=================box info===================")
     for b in bboxes:
         print(b)
         obj_score, cls_index = b[4], int(b[5])
