@@ -11,13 +11,17 @@ Network|COCO mAP(0.5)|Resolution|Run Time(4xCore)|Run Time(1xCore)|FLOPs(G)|Para
 [Yolo-FastestV1.1](https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco)|24.40 %|320X320|26.60 ms|75.74 ms|0.252|0.35M
 [Yolo-FastestV2](https://github.com/dog-qiuqiu/Yolo-FastestV2/tree/main/modelzoo)|24.10 %|352X352|23.8 ms|68.9 ms|0.212|0.25M
 FastestDet|27.8%|512X512|21.51ms|34.62ms|*|0.25M
-
 * ***Test platform RK3568 CPU，Based on [NCNN](https://github.com/Tencent/ncnn)***
 # Improvement
 * Anchor-Free
 * Single scale detector head
 * Cross grid multiple candidate targets
 * Dynamic positive and negative sample allocation
+# Multi-platform benchmark
+Equipment|Computing backend|System|Framework|Run time(Single core)|Run time(Multi core)
+:---:|:---:|:---:|:---:|:---:|:---:
+Radxa rock3a|RK3568(arm-cpu)|Linux(aarch64)|ncnn|34.62ms|21.51ms
+AMD|R5-5600(X86-cpu)|Linux(amd64)|ncnn|2.16ms|1.73ms
 # How to use
 ## Dependent installation
 * PiP(Note pytorch CUDA version selection)
