@@ -31,7 +31,7 @@ AMD|R5-5600(X86-cpu)|Linux(amd64)|ncnn|2.16ms|1.73ms
 ## Test
 * Picture test
   ```
-  python3 test.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth --img data/3.jpg
+  python3 test.py --yaml configs/coco.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth --img data/3.jpg
   ```
 <div align=center>
 <img src="https://github.com/dog-qiuqiu/FastestDet/blob/main/result.png"> />
@@ -110,7 +110,7 @@ AMD|R5-5600(X86-cpu)|Linux(amd64)|ncnn|2.16ms|1.73ms
 
   ```
 ### Build the training .yaml configuration file
-* Reference./configs/config.yaml
+* Reference./configs/coco.yaml
 ```
 DATASET:
   TRAIN: "/home/qiuqiu/Desktop/coco2017/train2017.txt"  # Train dataset path .txt file
@@ -134,12 +134,12 @@ TRAIN:
 ### Train
 * Perform training tasks
   ```
-  python3 train.py --yaml configs/config.yaml
+  python3 train.py --yaml configs/coco.yaml
   ```
 ### Evaluation
 * Calculate map evaluation
   ```
-  python3 eval.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth
+  python3 eval.py --yaml configs/coco.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth
   ```
 * COCO2017 evaluation
   ```
@@ -170,7 +170,7 @@ TRAIN:
 ## Export onnx
 * You can export .onnx by adding the --onnx option when executing test.py
   ```
-  python3 test.py --yaml configs/config.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth --img data/3.jpg --onnx
+  python3 test.py --yaml configs/coco.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth --img data/3.jpg --onnx
   ```
 ## onnx-runtime
 * You can learn about the pre and post-processing methods of FastestDet in this Sample

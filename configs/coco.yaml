@@ -1,7 +1,7 @@
 DATASET:
   TRAIN: "/home/qiuqiu/Desktop/coco2017/train2017.txt"
   VAL: "/home/qiuqiu/Desktop/coco2017/val2017.txt"
-  NAMES: "dataset/coco128/coco.names"
+  NAMES: "configs/coco.names"
 MODEL:
   NC: 80
   INPUT_WIDTH: 512
