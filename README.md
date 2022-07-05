@@ -9,6 +9,7 @@
 Network|mAPval 0.5|mAPval 0.5:0.95|Resolution|Run Time(4xCore)|Run Time(1xCore)|Params(M)
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
 [yolov5s](https://github.com/ultralytics/yolov5)|56.8%|37.4%|640X640|395.31ms|1139.16ms|7.2M
+[yolov6n](https://github.com/meituan/YOLOv6)|-|30.8%|416X416|109.24ms|445.44ms|4.3M
 [yolox-nano](https://github.com/Megvii-BaseDetection/YOLOX)|-|25.8%|416X416|76.31ms|191.16ms|0.91M
 [nanodet_m](https://github.com/RangiLyu/nanodet)|-|20.6%|320X320|49.24ms|160.35ms|0.95M
 [yolo-fastestv1.1](https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco)|24.40%|-|320X320|26.60ms|75.74ms|0.35M
@@ -25,6 +26,7 @@ FastestDet|27.8%|14.0%|512X512|21.51ms|34.62ms|0.25M
 Equipment|Computing backend|System|Framework|Run time(Single core)|Run time(Multi core)
 :---:|:---:|:---:|:---:|:---:|:---:
 Radxa rock3a|RK3568(arm-cpu)|Linux(aarch64)|ncnn|34.62ms|21.51ms
+Qualcomm|Snapdragon 835(arm-cpu)|Linux(aarch64)|ncnn|28.34ms|16.24ms
 AMD|R5-5600(X86-cpu)|Linux(amd64)|ncnn|2.16ms|1.73ms
 Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|5.21ms|4.73ms
 # How to use
