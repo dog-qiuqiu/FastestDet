@@ -6,12 +6,16 @@
 * ***The coco evaluation index increased by 3.8% compared with the map0.5 of Yolo-fastest***
 * ***算法介绍：https://zhuanlan.zhihu.com/p/536500269 交流qq群:1062122604***
 # Evaluating indicator/Benchmark
-Network|COCO mAP(0.5)|Resolution|Run Time(4xCore)|Run Time(1xCore)|FLOPs(G)|Params(M)
+Network|mAPval 0.5|mAPval 0.5:0.95|Resolution|Run Time(4xCore)|Run Time(1xCore)|Params(M)
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
-[Yolo-FastestV1.1](https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco)|24.40 %|320X320|26.60 ms|75.74 ms|0.252|0.35M
-[Yolo-FastestV2](https://github.com/dog-qiuqiu/Yolo-FastestV2/tree/main/modelzoo)|24.10 %|352X352|23.8 ms|68.9 ms|0.212|0.25M
-FastestDet|27.8%|512X512|21.51ms|34.62ms|*|0.25M
-* ***Test platform RK3568 CPU，Based on [NCNN](https://github.com/Tencent/ncnn)***
+[yolov5s](https://github.com/ultralytics/yolov5)|56.8%|37.4%|640X640|395.31ms|1139.16ms|7.2M
+[yolox-nano](https://github.com/Megvii-BaseDetection/YOLOX)|-|25.8%|416X416|76.31ms|191.16ms|0.91M
+[nanodet_m](https://github.com/RangiLyu/nanodet)|-|20.6%|320X320|49.24ms|160.35ms|0.95M
+[yolo-fastestv1.1](https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco)|24.40%|-|320X320|26.60ms|75.74ms|0.35M
+[yolo-fastestv2](https://github.com/dog-qiuqiu/Yolo-FastestV2/tree/main/modelzoo)|24.10%|-|352X352|23.8ms|68.9ms|0.25M
+FastestDet|27.8%|14.0%|512X512|21.51ms|34.62ms|0.25M
+* ***Test platform Radxa Rock3A RK3568 ARM Cortex-A55 CPU，Based on [NCNN](https://github.com/Tencent/ncnn)***
+* ***CPU lock frequency 2.0GHz***
 # Improvement
 * Anchor-Free
 * Single scale detector head
