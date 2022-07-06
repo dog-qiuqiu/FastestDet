@@ -1,3 +1,6 @@
+！！！！因为ncnn onnx2ncnn的bug导致crop算子计算有问题，故模型的指标需重新测试
+
+！！！！Because the bug of ncnn onnx2ncnn causes problems in the calculation of the crop operator, the indicators of the model need to be retested
 # :zap:FastestDet:zap:[![DOI](https://zenodo.org/badge/508635170.svg)](https://zenodo.org/badge/latestdoi/508635170)
 ![image](https://github.com/dog-qiuqiu/FastestDet/blob/main/data/data.png)
 * ***Faster! Stronger! Simpler!***
