@@ -69,7 +69,7 @@ if __name__ == '__main__':
     print("forward time:%fms"%time)
 
     # 特征图后处理
-    output = handel_preds(preds, device, opt.thresh)
+    output = handle_preds(preds, device, opt.thresh)
 
     # 加载label names
     LABEL_NAMES = []

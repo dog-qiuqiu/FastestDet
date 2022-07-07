@@ -58,7 +58,7 @@ class EMA():
         self.backup = {}
 
 # 后处理(归一化后的坐标)
-def handel_preds(preds, device, conf_thresh=0.25, nms_thresh=0.45):
+def handle_preds(preds, device, conf_thresh=0.25, nms_thresh=0.45):
     total_bboxes, output_bboxes  = [], []
     # 将特征图转换为检测框的坐标
     N, C, H, W = preds.shape
