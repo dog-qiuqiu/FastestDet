@@ -68,7 +68,7 @@ class CocoDetectionEvaluator():
                 # 模型预测
                 preds = model(imgs)
                 # 特征图后处理
-                output = handel_preds(preds, self.device, 0.001)
+                output = handle_preds(preds, self.device, 0.001)
 
             # 检测结果
             N, _, H, W = imgs.shape
