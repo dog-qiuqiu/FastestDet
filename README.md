@@ -181,6 +181,11 @@ TRAIN:
   ```
   python3 test.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth --img data/3.jpg --onnx
   ```
+## Export torchscript
+* You can export .pt by adding the --torchscript option when executing test.py
+  ```
+  python3 test.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth --img data/3.jpg --torchscript
+  ```
 ## onnx-runtime
 * You can learn about the pre and post-processing methods of FastestDet in this Sample
   ```
