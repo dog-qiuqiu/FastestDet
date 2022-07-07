@@ -28,6 +28,7 @@ FastestDet|25.0%|12.3%|352X352|23.51ms|70.62ms|0.24M
 Equipment|Computing backend|System|Framework|Run time(Single core)|Run time(Multi core)
 :---:|:---:|:---:|:---:|:---:|:---:
 Radxa rock3a|RK3568(arm-cpu)|Linux(aarch64)|ncnn|70.62ms|23.51ms
+Radxa rock3a|RK3568(NPU)|Linux(aarch64)|rknn|28ms|-
 Qualcomm|Snapdragon 835(arm-cpu)|Android(aarch64)|ncnn|32.34ms|16.24ms
 Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|4.51ms|4.33ms
 # How to use
