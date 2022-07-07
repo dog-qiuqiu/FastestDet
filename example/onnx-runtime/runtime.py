@@ -116,7 +116,7 @@ if __name__ == '__main__':
     # 读取图片
     img = cv2.imread("1.jpg")
     # 模型输入的宽高
-    input_width, input_height = 512, 512
+    input_width, input_height = 352, 352
     # 加载模型
     session = onnxruntime.InferenceSession('FastestDet.onnx')
     # 目标检测

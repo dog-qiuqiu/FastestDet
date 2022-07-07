@@ -4,15 +4,15 @@ DATASET:
   NAMES: "configs/coco.names"
 MODEL:
   NC: 80
-  INPUT_WIDTH: 512
-  INPUT_HEIGHT: 512
+  INPUT_WIDTH: 352
+  INPUT_HEIGHT: 352
 TRAIN:
   LR: 0.001
   THRESH: 0.25
   WARMUP: true
-  BATCH_SIZE: 64
-  END_EPOCH: 350
+  BATCH_SIZE: 96
+  END_EPOCH: 300
   MILESTIONES:
-    - 150
+    - 100
+    - 200
     - 250
-    - 300

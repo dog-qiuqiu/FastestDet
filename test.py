@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser.add_argument('--yaml', type=str, default="", help='.yaml config')
     parser.add_argument('--weight', type=str, default=None, help='.weight config')
     parser.add_argument('--img', type=str, default='', help='The path of test image')
-    parser.add_argument('--thresh', type=float, default=0.8, help='The path of test image')
+    parser.add_argument('--thresh', type=float, default=0.65, help='The path of test image')
     parser.add_argument('--onnx', action="store_true", default=False, help='Export onnx file')
     parser.add_argument('--cpu', action="store_true", default=False, help='Run on cpu')
 

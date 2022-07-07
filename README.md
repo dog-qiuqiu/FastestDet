@@ -1,12 +1,11 @@
-！！！！因为ncnn onnx2ncnn的bug导致crop算子计算有问题，故模型的指标需重新测试:https://github.com/Tencent/ncnn/pull/3999
+！！！！因为ncnn onnx2ncnn的bug导致crop算子计算有问题，修复后模型的指标作了调整修正:https://github.com/Tencent/ncnn/pull/3999
 
-！！！！Because the bug of ncnn onnx2ncnn causes problems in the calculation of the crop operator, the indicators of the model need to be retested :https://github.com/Tencent/ncnn/pull/3999
 # :zap:FastestDet:zap:[![DOI](https://zenodo.org/badge/508635170.svg)](https://zenodo.org/badge/latestdoi/508635170)
 ![image](https://github.com/dog-qiuqiu/FastestDet/blob/main/data/data.png)
 * ***Faster! Stronger! Simpler!***
-* ***It has better single core reasoning performance and simpler feature map post-processing than Yolo-fastest***
-* ***In the ARM CPU of RK3568, the single core reasoning performance is 50% higher than Yolo-fastest***
-* ***The coco evaluation index increased by 3.8% compared with the map0.5 of Yolo-fastest***
+* ***It has better performance and simpler feature map post-processing than Yolo-fastest***
+* ***The performance is 10% higher than Yolo-fastest***
+* ***The coco evaluation index increased by 0.9% compared with the map0.5 of Yolo-fastestv2***
 * ***算法介绍：https://zhuanlan.zhihu.com/p/536500269 交流qq群:1062122604***
 # Evaluating indicator/Benchmark
 Network|mAPval 0.5|mAPval 0.5:0.95|Resolution|Run Time(4xCore)|Run Time(1xCore)|Params(M)
@@ -17,7 +16,7 @@ Network|mAPval 0.5|mAPval 0.5:0.95|Resolution|Run Time(4xCore)|Run Time(1xCore)|
 [nanodet_m](https://github.com/RangiLyu/nanodet)|-|20.6%|320X320|49.24ms|160.35ms|0.95M
 [yolo-fastestv1.1](https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco)|24.40%|-|320X320|26.60ms|75.74ms|0.35M
 [yolo-fastestv2](https://github.com/dog-qiuqiu/Yolo-FastestV2/tree/main/modelzoo)|24.10%|-|352X352|23.8ms|68.9ms|0.25M
-FastestDet|27.8%|14.0%|512X512|21.51ms|34.62ms|0.25M
+FastestDet|25.0%|12.3%|352X352|23.51ms|70.62ms|0.24M
 * ***Test platform Radxa Rock3A RK3568 ARM Cortex-A55 CPU，Based on [NCNN](https://github.com/Tencent/ncnn)***
 * ***CPU lock frequency 2.0GHz***
 # Improvement
@@ -28,10 +27,9 @@ FastestDet|27.8%|14.0%|512X512|21.51ms|34.62ms|0.25M
 # Multi-platform benchmark
 Equipment|Computing backend|System|Framework|Run time(Single core)|Run time(Multi core)
 :---:|:---:|:---:|:---:|:---:|:---:
-Radxa rock3a|RK3568(arm-cpu)|Linux(aarch64)|ncnn|34.62ms|21.51ms
-Qualcomm|Snapdragon 835(arm-cpu)|Android(aarch64)|ncnn|28.34ms|16.24ms
-AMD|R5-5600(X86-cpu)|Linux(amd64)|ncnn|2.16ms|1.73ms
-Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|5.21ms|4.73ms
+Radxa rock3a|RK3568(arm-cpu)|Linux(aarch64)|ncnn|70.62ms|23.51ms
+Qualcomm|Snapdragon 835(arm-cpu)|Android(aarch64)|ncnn|32.34ms|16.24ms
+Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|4.51ms|4.33ms
 # How to use
 ## Dependent installation
 * PiP(Note pytorch CUDA version selection)
@@ -41,7 +39,7 @@ Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|5.21ms|4.73ms
 ## Test
 * Picture test
   ```
-  python3 test.py --yaml configs/coco.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth --img data/3.jpg
+  python3 test.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth --img data/3.jpg
   ```
 <div align=center>
 <img src="https://github.com/dog-qiuqiu/FastestDet/blob/main/result.png"> />
@@ -128,8 +126,8 @@ DATASET:
   NAMES: "dataset/coco128/coco.names"                   # .names category label file
 MODEL:
   NC: 80                                                # Number of detection categories
-  INPUT_WIDTH: 512                                      # The width of the model input image
-  INPUT_HEIGHT: 512                                     # The height of the model input image
+  INPUT_WIDTH: 352                                      # The width of the model input image
+  INPUT_HEIGHT: 352                                     # The height of the model input image
 TRAIN:
   LR: 0.001                                             # Train learn rate
   THRESH: 0.25                                          # ？？？？
@@ -149,7 +147,7 @@ TRAIN:
 ### Evaluation
 * Calculate map evaluation
   ```
-  python3 eval.py --yaml configs/coco.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth
+  python3 eval.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth
   ```
 * COCO2017 evaluation
   ```
@@ -162,25 +160,25 @@ TRAIN:
   DONE (t=30.85s).
   Accumulating evaluation results...
   DONE (t=4.97s).
-   Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.140
-   Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.278
-   Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.128
-   Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.018
-   Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.103
-   Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.232
-   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.157
-   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.225
-   Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.231
-   Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.032
-   Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.201
-   Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.359
+  Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.123
+  Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.250
+  Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.109
+  Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.017
+  Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.115
+  Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.238
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.139
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.199
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.205
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.035
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.218
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.374
 
   ```
 # Deploy
 ## Export onnx
 * You can export .onnx by adding the --onnx option when executing test.py
   ```
-  python3 test.py --yaml configs/coco.yaml --weight weights/weight_AP05\:0.278_280-epoch.pth --img data/3.jpg --onnx
+  python3 test.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth --img data/3.jpg --onnx
   ```
 ## onnx-runtime
 * You can learn about the pre and post-processing methods of FastestDet in this Sample
