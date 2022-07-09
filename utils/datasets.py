@@ -58,11 +58,11 @@ class TensorDataset():
                     else:
                         self.data_list.append(data_path)
                 else:
-                    raise Exception("%s is not exist" % data_path)
+                    raise Exception("%s does not exist" % data_path)
 
     def __getitem__(self, index):
         img_path = self.data_list[index]
-        label_path = img_path.split(".")[0] + ".txt"
+        label_path = '.'.join(img_path.split(".")[:-1]) + ".txt"
 
         # 加载图片
         img = cv2.imread(img_path)
@@ -80,7 +80,7 @@ class TensorDataset():
                 #assert (label >= 0).all(), 'negative labels: %s'%label_path
                 #assert (label[:, 1:] <= 1).all(), 'non-normalized or out of bounds coordinate labels: %s'%label_path
         else:
-            raise Exception("%s is not exist" % label_path) 
+            raise Exception("%s does not exist" % label_path) 
 
         # 是否进行数据增强
         if self.aug:
