@@ -1,1 +1,6 @@
+conda env list
 
+conda create -n yolo_37 python=3.7 -y
+conda activate yolo_37
+
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
