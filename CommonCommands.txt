@@ -1,5 +1,5 @@
 conda env list
-
+nvcc -V
 conda create -n yolo_37 python=3.7 -y
 conda activate yolo_37
 
