@@ -20,7 +20,7 @@ def preprocess(src_img, size):
     return output.astype('float32')
 
 # nms算法
-def nms(dets, thresh=0.35):
+def nms(dets, thresh=0.45):
     # dets:N*M,N是bbox的个数，M的前4位是对应的（x1,y1,x2,y2），第5位是对应的分数
     # #thresh:0.3,0.5....
     x1 = dets[:, 0]
@@ -89,7 +89,7 @@ def detection(session, img, input_width, input_height, thresh):
 
             # 解析检测框置信度
             obj_score, cls_score = data[0], data[5:].max()
-            score = obj_score * cls_score
+            score = (obj_score ** 0.6) * (cls_score ** 0.4)
 
             # 阈值筛选
             if score > thresh:
@@ -114,14 +114,14 @@ def detection(session, img, input_width, input_height, thresh):
 
 if __name__ == '__main__':
     # 读取图片
-    img = cv2.imread("1.jpg")
+    img = cv2.imread("3.jpg")
     # 模型输入的宽高
     input_width, input_height = 352, 352
     # 加载模型
     session = onnxruntime.InferenceSession('FastestDet.onnx')
     # 目标检测
     start = time.perf_counter()
-    bboxes = detection(session, img, input_width, input_height, 0.8)
+    bboxes = detection(session, img, input_width, input_height, 0.65)
     end = time.perf_counter()
     time = (end - start) * 1000.
     print("forward time:%fms"%time)

@@ -94,7 +94,8 @@ class DetectorLoss(nn.Module):
 
         # 定义obj和cls的损失函数
         BCEcls = nn.NLLLoss() 
-        BCEobj = nn.BCELoss(reduction='none')
+        # smmoth L1相比于bce效果最好
+        BCEobj = nn.SmoothL1Loss(reduction='none')
         
         # 构建ground truth
         gt_box, gt_cls, ps_index = self.build_target(preds, targets)
@@ -134,7 +135,8 @@ class DetectorLoss(nn.Module):
             ps = torch.log(pcls[b, gy, gx])
             cls_loss = BCEcls(ps, gt_cls[0][f])
 
-            tobj[b, gy, gx] = 1.0
+            # iou aware
+            tobj[b, gy, gx] = iou.float()
             # 统计每个图片正样本的数量
             n = torch.bincount(b)
             factor[b, gy, gx] =  (1. / (n[b] / (H * W))) * 0.25

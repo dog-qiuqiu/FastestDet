@@ -5,7 +5,7 @@ import numpy as np
 import torch
 import random
 
-def random_scale(image, boxes):
+def random_crop(image, boxes):
     height, width, _ = image.shape
     # random crop imgage
     cw, ch = random.randint(int(width * 0.75), width), random.randint(int(height * 0.75), height)
@@ -28,6 +28,30 @@ def random_scale(image, boxes):
     output = np.array(output, dtype=float)
 
     return roi, output
+
+def random_narrow(image, boxes):
+    height, width, _ = image.shape
+    # random narrow
+    cw, ch = random.randint(width, int(width * 1.25)), random.randint(height, int(height * 1.25))
+    cx, cy = random.randint(0, cw - width), random.randint(0, ch - height)
+
+    background = np.ones((ch, cw, 3), np.uint8) * 128
+    background[cy:cy + height, cx:cx + width] = image
+
+    output = []
+    for box in boxes:
+        index, category = box[0], box[1]
+        bx, by = box[2] * width, box[3] * height
+        bw, bh = box[4] * width, box[5] * height
+
+        bx, by = (bx + cx)/cw, (by + cy)/ch
+        bw, bh = bw/cw, bh/ch
+
+        output.append([index, category, bx, by, bw, bh])
+
+    output = np.array(output, dtype=float)
+
+    return background, output
 
 def collate_fn(batch):
     img, label = zip(*batch)
@@ -84,7 +108,10 @@ class TensorDataset():
 
         # 是否进行数据增强
         if self.aug:
-            img, label = random_scale(img, label)
+            if random.randint(1, 10) % 2 == 0:
+                img, label = random_narrow(img, label)
+            else:
+                img, label = random_crop(img, label)
 
         img = cv2.resize(img, (self.img_width, self.img_height), interpolation = cv2.INTER_LINEAR) 
 

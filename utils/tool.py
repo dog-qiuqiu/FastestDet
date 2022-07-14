@@ -72,7 +72,7 @@ def handle_preds(preds, device, conf_thresh=0.25, nms_thresh=0.45):
     pcls = pred[:, :, :, 5:]
 
     # 检测框置信度
-    bboxes[..., 4] = pobj.squeeze(-1) * pcls.max(dim=-1)[0]
+    bboxes[..., 4] = (pobj.squeeze(-1) ** 0.6) * (pcls.max(dim=-1)[0] ** 0.4)
     bboxes[..., 5] = pcls.argmax(dim=-1)
 
     # 检测框的坐标

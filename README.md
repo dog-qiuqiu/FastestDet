@@ -16,7 +16,7 @@ Network|mAPval 0.5|mAPval 0.5:0.95|Resolution|Run Time(4xCore)|Run Time(1xCore)|
 [nanodet_m](https://github.com/RangiLyu/nanodet)|-|20.6%|320X320|49.24ms|160.35ms|0.95M
 [yolo-fastestv1.1](https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco)|24.40%|-|320X320|26.60ms|75.74ms|0.35M
 [yolo-fastestv2](https://github.com/dog-qiuqiu/Yolo-FastestV2/tree/main/modelzoo)|24.10%|-|352X352|23.8ms|68.9ms|0.25M
-FastestDet|25.0%|12.3%|352X352|23.51ms|70.62ms|0.24M
+FastestDet|25.3%|13.0%|352X352|23.51ms|70.62ms|0.24M
 * ***Test platform Radxa Rock3A RK3568 ARM Cortex-A55 CPU，Based on [NCNN](https://github.com/Tencent/ncnn)***
 * ***CPU lock frequency 2.0GHz***
 # Improvement
@@ -40,7 +40,7 @@ Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|4.51ms|4.33ms
 ## Test
 * Picture test
   ```
-  python3 test.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth --img data/3.jpg
+  python3 test.py --yaml configs/coco.yaml --weight weights/weight_AP05:0.253207_280-epoch.pth --img data/3.jpg
   ```
 <div align=center>
 <img src="https://github.com/dog-qiuqiu/FastestDet/blob/main/result.png"> />
@@ -148,7 +148,7 @@ TRAIN:
 ### Evaluation
 * Calculate map evaluation
   ```
-  python3 eval.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth
+  python3 eval.py --yaml configs/coco.yaml --weight weights/weight_AP05:0.253207_280-epoch.pth
   ```
 * COCO2017 evaluation
   ```
@@ -161,30 +161,30 @@ TRAIN:
   DONE (t=30.85s).
   Accumulating evaluation results...
   DONE (t=4.97s).
-  Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.123
-  Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.250
-  Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.109
-  Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.017
-  Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.115
-  Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.238
-  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.139
-  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.199
-  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.205
-  Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.035
-  Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.218
-  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.374
+  Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.130
+  Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.253
+  Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.119
+  Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.021
+  Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.129
+  Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.237
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.142
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.208
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.214
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.043
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.236
+  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.372
 
   ```
 # Deploy
 ## Export onnx
 * You can export .onnx by adding the --onnx option when executing test.py
   ```
-  python3 test.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth --img data/3.jpg --onnx
+  python3 test.py --yaml configs/coco.yaml --weight weights/weight_AP05:0.253207_280-epoch.pth --img data/3.jpg --onnx
   ```
 ## Export torchscript
 * You can export .pt by adding the --torchscript option when executing test.py
   ```
-  python3 test.py --yaml configs/coco.yaml --weight weights/coco_ap05_0.250_280epoch.pth --img data/3.jpg --torchscript
+  python3 test.py --yaml configs/coco.yaml --weight weights/weight_AP05:0.253207_280-epoch.pth --img data/3.jpg --torchscript
   ```
 ## NCNN
 * Need to compile ncnn and opencv in advance and modify the path in build.sh
