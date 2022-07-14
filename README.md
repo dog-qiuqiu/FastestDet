@@ -8,7 +8,7 @@
 * ***Faster! Stronger! Simpler!***
 * ***It has better performance and simpler feature map post-processing than Yolo-fastest***
 * ***The performance is 10% higher than Yolo-fastest***
-* ***The coco evaluation index increased by 0.9% compared with the map0.5 of Yolo-fastestv2***
+* ***The coco evaluation index increased by 1.2% compared with the map0.5 of Yolo-fastestv2***
 * ***算法介绍：https://zhuanlan.zhihu.com/p/536500269 交流qq群:1062122604***
 # Evaluating indicator/Benchmark
 Network|mAPval 0.5|mAPval 0.5:0.95|Resolution|Run Time(4xCore)|Run Time(1xCore)|Params(M)
