@@ -123,26 +123,26 @@ Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|4.51ms|4.33ms
   ```
 ### Build the training .yaml configuration file
 * Reference./configs/coco.yaml
-```
-DATASET:
-  TRAIN: "/home/qiuqiu/Desktop/coco2017/train2017.txt"  # Train dataset path .txt file
-  VAL: "/home/qiuqiu/Desktop/coco2017/val2017.txt"      # Val dataset path .txt file 
-  NAMES: "dataset/coco128/coco.names"                   # .names category label file
-MODEL:
-  NC: 80                                                # Number of detection categories
-  INPUT_WIDTH: 352                                      # The width of the model input image
-  INPUT_HEIGHT: 352                                     # The height of the model input image
-TRAIN:
-  LR: 0.001                                             # Train learn rate
-  THRESH: 0.25                                          # ？？？？
-  WARMUP: true                                          # Trun on warm up
-  BATCH_SIZE: 64                                        # Batch size
-  END_EPOCH: 350                                        # Train epichs
-  MILESTIONES:                                          # Declining learning rate steps
-    - 150
-    - 250
-    - 300
-```
+  ```
+  DATASET:
+    TRAIN: "/home/qiuqiu/Desktop/coco2017/train2017.txt"  # Train dataset path .txt file
+    VAL: "/home/qiuqiu/Desktop/coco2017/val2017.txt"      # Val dataset path .txt file 
+    NAMES: "dataset/coco128/coco.names"                   # .names category label file
+  MODEL:
+    NC: 80                                                # Number of detection categories
+    INPUT_WIDTH: 352                                      # The width of the model input image
+    INPUT_HEIGHT: 352                                     # The height of the model input image
+  TRAIN:
+    LR: 0.001                                             # Train learn rate
+    THRESH: 0.25                                          # ？？？？
+    WARMUP: true                                          # Trun on warm up
+    BATCH_SIZE: 64                                        # Batch size
+    END_EPOCH: 350                                        # Train epichs
+    MILESTIONES:                                          # Declining learning rate steps
+      - 150
+      - 250
+      - 300
+  ```
 ### Train
 * Perform training tasks
   ```
@@ -203,12 +203,15 @@ TRAIN:
   pip install onnx-runtime
   python3 runtime.py
   ```
-@misc{=FastestDet,
-      title={FastestDet: Ultra lightweight anchor-free real-time object detection algorithm.},
-      author={xuehao.ma},
-      howpublished = {\url{https://github.com/dog-qiuqiu/FastestDet}},
-      year={2022}
-}
-```
+# Citation
+* If you find this project useful in your research, please consider cite:
+  ```
+  @misc{=FastestDet,
+        title={FastestDet: Ultra lightweight anchor-free real-time object detection algorithm.},
+        author={xuehao.ma},
+        howpublished = {\url{https://github.com/dog-qiuqiu/FastestDet}},
+        year={2022}
+  }
+  ```
 # Reference
 * https://github.com/Tencent/ncnn
