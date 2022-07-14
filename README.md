@@ -1,6 +1,9 @@
 ！！！！因为ncnn onnx2ncnn的bug导致crop算子计算有问题，修复后模型的指标作了调整修正:https://github.com/Tencent/ncnn/pull/3999
 
-# :zap:FastestDet:zap:[![DOI](https://zenodo.org/badge/508635170.svg)](https://zenodo.org/badge/latestdoi/508635170)
+# :zap:FastestDet:zap:
+[![DOI](https://zenodo.org/badge/508635170.svg)](https://zenodo.org/badge/latestdoi/508635170)
+![image](https://img.shields.io/github/license/dog-qiuqiu/FastestDet)
+![image](https://img.shields.io/github/stars/dog-qiuqiu/FastestDet?style=flat)
 ![image](https://github.com/dog-qiuqiu/FastestDet/blob/main/data/data.png)
 * ***Faster! Stronger! Simpler!***
 * ***It has better performance and simpler feature map post-processing than Yolo-fastest***
