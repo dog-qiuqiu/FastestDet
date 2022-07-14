@@ -209,10 +209,10 @@ TRAIN:
 * If you find this project useful in your research, please consider cite:
 ```
 @misc{=FastestDet,
-    title={FastestDet: Ultra lightweight anchor-free real-time object detection algorithm.},
-    author={xuehao.ma},
-    howpublished = {\url{https://github.com/dog-qiuqiu/FastestDet}},
-    year={2022}
+      title={FastestDet: Ultra lightweight anchor-free real-time object detection algorithm.},
+      author={xuehao.ma},
+      howpublished = {\url{https://github.com/dog-qiuqiu/FastestDet}},
+      year={2022}
 }
 ```
 # Reference
