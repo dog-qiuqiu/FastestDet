@@ -203,11 +203,6 @@ TRAIN:
   pip install onnx-runtime
   python3 runtime.py
   ```
-## OpenCV DNN
-* https://github.com/hpc203/FastestDet-opencv-dnn
-# Citation
-* If you find this project useful in your research, please consider cite:
-```
 @misc{=FastestDet,
       title={FastestDet: Ultra lightweight anchor-free real-time object detection algorithm.},
       author={xuehao.ma},
