@@ -121,7 +121,7 @@ int main()
     printf("ncnn model load sucess...\n");
 
     // 加载图片
-    cv::Mat img = cv::imread("1.jpg");
+    cv::Mat img = cv::imread("3.jpg");
     int img_width = img.cols;
     int img_height = img.rows;
 
@@ -139,11 +139,11 @@ int main()
 
     double start = ncnn::get_current_time();
     //set input tensor
-    ex.input("in0", input);
+    ex.input("input.1", input);
 
     // get output tensor
     ncnn::Mat output; 
-    ex.extract("out0", output); 
+    ex.extract("758", output); 
     printf("output: %d, %d, %d\n", output.c, output.h, output.w);
 
     // handle output tensor
@@ -170,7 +170,7 @@ int main()
                     category = i;
                 }
             }
-            float score = max_score * obj_score;
+            float score = pow(max_score, 0.4) * pow(obj_score, 0.6);
 
             // 阈值筛选
             if(score > thresh) 
