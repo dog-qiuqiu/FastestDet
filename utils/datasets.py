@@ -69,7 +69,7 @@ class TensorDataset():
         self.data_list = []
         self.img_width = img_width
         self.img_height = img_height
-        self.img_formats = ['bmp', 'jpg', 'jpeg', 'png']
+        self.img_formats = ['bmp', 'jpg', 'jpeg', 'png', 'BMP', 'JPG', 'JPEG', 'PNG']
 
         # 数据检查
         with open(self.path, 'r') as f:
@@ -86,7 +86,7 @@ class TensorDataset():
 
     def __getitem__(self, index):
         img_path = self.data_list[index]
-        label_path = img_path.split(".")[0] + ".txt"
+        label_path = img_path.rsplit(".", 1)[0] + ".txt"
 
         # 加载图片
         img = cv2.imread(img_path)
