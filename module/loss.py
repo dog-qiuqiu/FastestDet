@@ -70,19 +70,19 @@ class DetectorLoss(nn.Module):
             # 过滤越界坐标
             quadrant = quadrant.repeat(gt.size(1), 1, 1).permute(1, 0, 2)
             gij = gt[..., 2:4].long() + quadrant
-            j = torch.where(gij < H, gij, 0).min(dim=-1)[0] > 0 
+            kept = (gij[..., 0] < W) & (gij[..., 1] < H)
 
             # 前景的位置下标
-            gi, gj = gij[j].T
-            batch_index = gt[..., 0].long()[j]
+            gi, gj = gij[kept].T
+            batch_index = gt[..., 0].long()[kept]
             ps_index.append((batch_index, gi, gj))
 
             # 前景的box
-            gbox = gt[..., 2:][j]
+            gbox = gt[..., 2:][kept]
             gt_box.append(gbox)
             
             # 前景的类别
-            gt_cls.append(gt[..., 1].long()[j])
+            gt_cls.append(gt[..., 1].long()[kept])
 
         return gt_box, gt_cls, ps_index
 
