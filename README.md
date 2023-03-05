@@ -202,6 +202,13 @@ Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|4.51ms|4.33ms
   pip install onnx-runtime
   python3 runtime.py
   ```
+
+## tflite
+  ```
+  cd example/tflite
+  # follow the instructions in readme.md 
+  ```
+
 # Citation
 * If you find this project useful in your research, please consider cite:
   ```
