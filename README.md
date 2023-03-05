@@ -204,6 +204,7 @@ Intel|i7-8700(X86-cpu)|Linux(amd64)|ncnn|4.51ms|4.33ms
   ```
 
 ## tflite
+* You'll need to follow the instructions in readme.md to learn about running the tflite model
   ```
   cd example/tflite
   # follow the instructions in readme.md 
