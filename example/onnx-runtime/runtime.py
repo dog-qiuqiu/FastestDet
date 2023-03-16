@@ -47,7 +47,7 @@ def nms(dets, thresh=0.45):
         h = np.maximum(0.0, yy2 - yy1 + 1)
         inter = w * h
 
-        # 求交叉区域的面积占两者（置信度高的bbox和其他bbox）面积和的必烈
+        # 求交叉区域的面积占两者（置信度高的bbox和其他bbox）面积和的比例
         ovr = inter / (areas[i] + areas[order[1:]] - inter)
 
         # 保留ovr小于thresh的bbox，进入下一次迭代。
