@@ -1,28 +1,35 @@
 import cv2
 import time
 import numpy as np
-import onnxruntime 
+import onnxruntime
+
 
 # sigmoid函数
 def sigmoid(x):
-    return 1. / (1 + np.exp(-x))
+    return 1.0 / (1 + np.exp(-x))
+
 
 # tanh函数
 def tanh(x):
-    return 2. / (1 + np.exp(-2 * x)) - 1
+    return 2.0 / (1 + np.exp(-2 * x)) - 1
+
 
 # 数据预处理
 def preprocess(src_img, size):
-    output = cv2.resize(src_img,(size[0], size[1]),interpolation=cv2.INTER_AREA)
-    output = output.transpose(2,0,1)
+    output = cv2.resize(src_img, (size[0], size[1]), interpolation=cv2.INTER_AREA)
+    output = output.transpose(2, 0, 1)
     output = output.reshape((1, 3, size[1], size[0])) / 255
 
-    return output.astype('float32')
+    return output.astype("float32")
+
 
 # nms算法
 def nms(dets, thresh=0.45):
     # dets:N*M,N是bbox的个数，M的前4位是对应的（x1,y1,x2,y2），第5位是对应的分数
     # #thresh:0.3,0.5....
+    # 防止传入后预测框丢失的情况
+    if dets is []:
+        return [None]
     x1 = dets[:, 0]
     y1 = dets[:, 1]
     x2 = dets[:, 2]
@@ -55,12 +62,13 @@ def nms(dets, thresh=0.45):
 
         # 因为ovr中的索引不包括order[0]所以要向后移动一位
         order = order[inds + 1]
-    
+
     output = []
     for i in keep:
         output.append(dets[i].tolist())
 
     return output
+
 
 # 人脸检测
 def detection(session, img, input_width, input_height, thresh):
@@ -89,7 +97,7 @@ def detection(session, img, input_width, input_height, thresh):
 
             # 解析检测框置信度
             obj_score, cls_score = data[0], data[5:].max()
-            score = (obj_score ** 0.6) * (cls_score ** 0.4)
+            score = (obj_score**0.6) * (cls_score**0.4)
 
             # 阈值筛选
             if score > thresh:
@@ -102,47 +110,55 @@ def detection(session, img, input_width, input_height, thresh):
                 # 检测框归一化后中心点
                 box_cx = (w + x_offset) / feature_map_width
                 box_cy = (h + y_offset) / feature_map_height
-                
+
                 # cx,cy,w,h => x1, y1, x2, y2
                 x1, y1 = box_cx - 0.5 * box_width, box_cy - 0.5 * box_height
                 x2, y2 = box_cx + 0.5 * box_width, box_cy + 0.5 * box_height
                 x1, y1, x2, y2 = int(x1 * W), int(y1 * H), int(x2 * W), int(y2 * H)
 
                 pred.append([x1, y1, x2, y2, score, cls_index])
-
+    # 防止没有预测框的情况
+    if len(pred) == 0:
+        return [None]
     return nms(np.array(pred))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # 读取图片
     img = cv2.imread("3.jpg")
     # 模型输入的宽高
     input_width, input_height = 352, 352
-    # 加载模型
-    session = onnxruntime.InferenceSession('FastestDet.onnx')
+    # 加载模型，provider参数是指定用CPU还是GPU推理，在onnxruntime某版本后必填
+    session = onnxruntime.InferenceSession(
+        "FastestDet.onnx", providers=["CPUExecutionProvider"]
+    )
     # 目标检测
     start = time.perf_counter()
     bboxes = detection(session, img, input_width, input_height, 0.65)
     end = time.perf_counter()
-    time = (end - start) * 1000.
-    print("forward time:%fms"%time)
+    time = (end - start) * 1000.0
+    print("forward time:%fms" % time)
 
     # 加载label names
     names = []
-    with open("coco.names", 'r') as f:
-	    for line in f.readlines():
-	        names.append(line.strip())
-            
+    with open("coco.names", "r") as f:
+        for line in f.readlines():
+            names.append(line.strip())
+
     print("=================box info===================")
-    for b in bboxes:
-        print(b)
-        obj_score, cls_index = b[4], int(b[5])
-        x1, y1, x2, y2 = int(b[0]), int(b[1]), int(b[2]), int(b[3])
+    # 防止没有预测框的情况
+    if bboxes != [None]:
+        for b in bboxes:
+            print(b)
+            obj_score, cls_index = b[4], int(b[5])
+            x1, y1, x2, y2 = int(b[0]), int(b[1]), int(b[2]), int(b[3])
 
-        #绘制检测框
-        cv2.rectangle(img, (x1,y1), (x2, y2), (255, 255, 0), 2)
-        cv2.putText(img, '%.2f' % obj_score, (x1, y1 - 5), 0, 0.7, (0, 255, 0), 2)
-        cv2.putText(img, names[cls_index], (x1, y1 - 25), 0, 0.7, (0, 255, 0), 2)
-	
+            # 防止推理要绘制的内容带numpy的只读属性，复制一份（会整型丢失精度）
+            img = img.astype(np.uint8)
+            # 绘制检测框
+            cv2.rectangle(img, (x1, y1), (x2, y2), (255, 255, 0), 2)
+            cv2.putText(img, "%.2f" % obj_score, (x1, y1 - 5), 0, 0.7, (0, 255, 0), 2)
+            cv2.putText(img, names[cls_index], (x1, y1 - 25), 0, 0.7, (0, 255, 0), 2)
+
+    # 保存结果图片
     cv2.imwrite("result.jpg", img)
-
-

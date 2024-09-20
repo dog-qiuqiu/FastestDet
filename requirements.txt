@@ -1,9 +1,9 @@
 numpy==1.23.0
 onnx==1.12.0
 onnx_simplifier==0.3.10
-onnxruntime==1.11.1
-onnxsim==0.4.0
-opencv_python==4.2.0.34
+onnxruntime==1.16.0
+onnxsim==0.4.0r
+opencv_python==4.10.0.84
 pycocotools==2.0.4
 PyYAML==6.0
 torch==1.11.0+cu113
