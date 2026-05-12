@@ -2,17 +2,30 @@ DATASET:
   TRAIN: "/home/qiuqiu/Desktop/coco2017/train2017.txt"
   VAL: "/home/qiuqiu/Desktop/coco2017/val2017.txt"
   NAMES: "configs/coco.names"
+
 MODEL:
   NC: 80
   INPUT_WIDTH: 352
   INPUT_HEIGHT: 352
+
 TRAIN:
   LR: 0.001
-  THRESH: 0.25
-  WARMUP: true
   BATCH_SIZE: 96
   END_EPOCH: 300
+  NUM_WORKERS: 4
+
+  # Learning rate schedule: "multistep" or "cosine"
+  SCHEDULER: "multistep"
   MILESTIONES:
     - 100
     - 200
     - 250
+
+  # Warmup: linearly scale LR from 0 for this many epochs
+  WARMUP_EPOCHS: 5
+
+  # Automatic Mixed Precision (requires CUDA; set false for CPU-only training)
+  AMP: false
+
+  # Max gradient norm for clipping (0 = disabled)
+  GRAD_CLIP: 10.0

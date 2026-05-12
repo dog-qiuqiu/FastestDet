@@ -77,7 +77,7 @@ if __name__ == '__main__':
         x = torch.rand(1, 3, cfg.input_height, cfg.input_width)
         mod = torch.jit.trace(model_cpu, x)
         mod.save("./FastestDet.pt")
-        print("to convert torchscript to pnnx/ncnn: ./pnnx FastestDet.pt inputshape=[1,3,%d,%d]" % (cfg.input_height, cfg.input_height))
+        print("to convert torchscript to pnnx/ncnn: ./pnnx FastestDet.pt inputshape=[1,3,%d,%d]" % (cfg.input_height, cfg.input_width))
 
     # 模型推理
     start = time.perf_counter()
@@ -92,17 +92,15 @@ if __name__ == '__main__':
     # 加载label names
     LABEL_NAMES = []
     with open(cfg.names, 'r') as f:
-	    for line in f.readlines():
-	        LABEL_NAMES.append(line.strip())
-    
+        for line in f.readlines():
+            LABEL_NAMES.append(line.strip())
+
     H, W, _ = ori_img.shape
-    scale_h, scale_w = H / cfg.input_height, W / cfg.input_width
 
     # 绘制预测框
     for box in output[0]:
-        print(box)
         box = box.tolist()
-       
+
         obj_score = box[4]
         category = LABEL_NAMES[int(box[5])]
 
@@ -110,7 +108,7 @@ if __name__ == '__main__':
         x2, y2 = int(box[2] * W), int(box[3] * H)
 
         cv2.rectangle(ori_img, (x1, y1), (x2, y2), (255, 255, 0), 2)
-        cv2.putText(ori_img, '%.2f' % obj_score, (x1, y1 - 5), 0, 0.7, (0, 255, 0), 2)	
+        cv2.putText(ori_img, '%.2f' % obj_score, (x1, y1 - 5), 0, 0.7, (0, 255, 0), 2)
         cv2.putText(ori_img, category, (x1, y1 - 25), 0, 0.7, (0, 255, 0), 2)
 
     cv2.imwrite("result.png", ori_img)
